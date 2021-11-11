@@ -2,7 +2,7 @@ import json
 
 from werkzeug.exceptions import BadRequest
 
-from kubeflow.kubeflow.crud_backend import logging
+from kubeflow.kubeflow.crud_backend import logging, authn
 
 from . import utils
 
@@ -343,3 +343,7 @@ def add_notebook_volume(notebook, vol_name, claim, mnt_path):
     # Container Mounts
     mnt = {"mountPath": mnt_path, "name": vol_name}
     container["volumeMounts"].append(mnt)
+
+def set_notebook_username_label(notebook):
+    username = authn.get_username()
+    notebook["metadata"]["labels"]["username"] = username
