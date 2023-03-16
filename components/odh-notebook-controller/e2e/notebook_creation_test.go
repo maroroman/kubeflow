@@ -163,7 +163,7 @@ func (tc *testContext) testNotebookTraffic(nbMeta *metav1.ObjectMeta) error {
 		return fmt.Errorf("error accessing Notebook Endpoint: %v ", err)
 	}
 	if resp.StatusCode != 200 {
-		return fmt.Errorf("Unexpected response from Notebook Endpoint")
+		return fmt.Errorf("Unexpected response from Notebook Endpoint: %v", resp)
 	}
 	return nil
 }
@@ -209,7 +209,7 @@ func (tc *testContext) testNotebookCulling(nbMeta *metav1.ObjectMeta) error {
 		return fmt.Errorf("error accessing Notebook Endpoint with 503: %v ", err)
 	}
 	if resp.StatusCode != 503 {
-		return fmt.Errorf("Unexpected response from Notebook Endpoint")
+		return fmt.Errorf("Unexpected response from Notebook Endpoint: %v ", resp)
 	}
 	return nil
 }
